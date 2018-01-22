@@ -8,16 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UIWebViewDelegate {
 
+    @IBOutlet var webview: UIWebView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        webview.delegate=self
+        let url=URL(string:"http://www.yahoo.co.jp")
+        let urlRequest=URLRequest(url: url!)
+        webview.loadRequest(urlRequest)
     }
-
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible=true
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible=true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
     }
 
 
